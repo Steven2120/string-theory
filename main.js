@@ -2,101 +2,115 @@
  * YOUR CODE HERE *
  ******************/
 function xify(str) {
-  let result = "";
+  let placeHolder = "";
+  let x = "x";
   for (let i = 0; i < str.length; i++) {
-    result += "x";
+    placeHolder += x;
   }
-  return result;
+  return placeHolder;
 }
 
 function yellingChars(str) {
-  let result1 = "";
+  let excl = "!";
+  let solution = "";
+
   for (let i = 0; i < str.length; i++) {
-    result1 += str[i];
-    result1 += "!";
+    let char = str[i];
+    solution = solution + char + excl;
   }
-  return result1;
+  return solution;
 }
 
 function indexedChars(str) {
-  let result2 = "";
+  let solution = "";
+
   for (let i = 0; i < str.length; i++) {
-    if (str[i] == str[0]) {
-    result2 += 0;
-    result2 += str[i];
-  } else {
-    result2 += i;
-    result2 += str[i];
-    }
+    let char = str[i];
+    let index = i;
+
+    solution += index + char;
   }
-  return result2;
+  return solution;
 }
 
 function numberedChars(str) {
-  let result3 = "";
+  let solution = "";
+
   for (let i = 0; i < str.length; i++) {
-    result3 += `(${i + 1})` + str[i];
+    let char = str[i];
+    let index = `(${i + 1})`;
+    solution += index + char;
   }
-  return result3;
+  return solution;
 }
 
 function exclaim(str) {
-  let result4 = "";
+  let solution = "";
+
   for (let i = 0; i < str.length; i++) {
-    if (str[i] === "?" || str[i] === ".") {
-      result4 += "!";
+    let char = str[i];
+    if (char === "." || char === "?") {
+      solution += "!";
     } else {
-      result4 += str[i];
+      solution += char;
     }
   }
-  return result4;
+  return solution;
 }
 
 function repeatIt(str, n) {
-  let result5 = "";
+  let solution = "";
+
   for (let i = 0; i < n; i++) {
-    result5 += str;
+    solution += str;
   }
-  return result5;
+  return solution;
 }
 
 function truncate(str) {
-  let result6 = "";
+  let solution = "";
+  let ellipsis = "...";
+
   for (let i = 0; i < str.length; i++) {
-    if (str.length < 18) {
-      return str;
-    }
-    if (i < 15) {
-      result6 += str[i];
+    if (str.length < 18) return (solution = str);
+    if (i === 15) {
+      solution += ellipsis;
+      break;
+    } else {
+      solution += str[i];
     }
   }
-  return result6 + "...";
+  return solution;
 }
 
 function ciEmailify(fullName) {
-  let result7 = "";
-  for (let i = 0; i < fullName.length; i++) {
-    if (fullName[i] === " ") {
-      result7 += ".";
+  let solution = "";
+  loweredName = fullName.toLowerCase();
+
+  for (let i = 0; i < loweredName.length; i++) {
+    let char = loweredName[i];
+    if (char === " ") {
+      solution += ".";
     } else {
-      result7 += fullName[i];
+      solution += char;
     }
   }
-  return result7.toLowerCase() + "@codeimmersives.com";
+  return `${solution}@codeimmersives.com`;
 }
 
 function reverse(str) {
-  let result8 = "";
+  let solution = "";
+
   for (let i = str.length - 1; i >= 0; i--) {
-    result8 += str[i];
+    solution += str[i];
   }
-  return result8;
+  return solution;
 }
 
 function onlyVowels(str) {
   let result9 = "";
   for (let i = 0; i < str.length; i++) {
-    if (str[i] == "a" || str[i] == "e" || str[i] == "i" || str[i] == "o" || str[i] == "u" || str[i] == "A" || str[i] == "E" || str[i] == "I" || str[i] == "O" || str[i] == "U") {
+    if (/[aeiou]/i.test(str[i])) {
       result9 += str[i];
     }
   }
@@ -104,128 +118,139 @@ function onlyVowels(str) {
 }
 
 function crazyCase(str) {
-  let result10 = "";
+  let solution = "";
+
   for (let i = 0; i < str.length; i++) {
-    if (i % 2 === 0) {
-      result10 += str[i].toLowerCase();
-    } else if (i % 2 !== 0) {
-      result10 += str[i].toUpperCase();
+    let char = str[i];
+    let even = i % 2 === 0;
+    let odd = i % 2 > 0;
+
+    if (odd) {
+      solution += char.toUpperCase();
+    } else if (even) {
+      solution += char.toLowerCase();
     }
   }
-  return result10;
+  return solution;
 }
 
 function titleCase(str) {
-  let result11 = str[0].toUpperCase();
-  for (let i = 1; i <= str.length - 1; i++) {
-    let currChar, prevChar = str[i - 1];
-    if (prevChar && prevChar == " ") {
-      currChar = str[i].toUpperCase();
+  let solution = "";
+
+  for (let i = 0; i < str.length; i++) {
+    let char = str[i];
+
+    if (i === 0) {
+      solution += char.toUpperCase();
+    } else if (str[i - 1] === " ") {
+      solution += char.toUpperCase();
     } else {
-      currChar = str[i];
+      solution += char.toLowerCase();
     }
-    result11 += currChar;
   }
-  return result11;
+  return solution;
 }
 
 function camelCase(str) {
-  str.toLowerCase()
-  let result12 = "";
-  for (let i = 0; i < str.length; i++) {
-    if (i == 0) {
-      result12 += str[i].toLowerCase();
+  let solution = "";
+  let newStr = str.toLowerCase();
+
+  for (let i = 0; i < newStr.length; i++) {
+    let char = newStr[i];
+    if (newStr[i - 1] === " ") {
+      solution += char.toUpperCase();
+    } else if (char === " ") {
+      solution += "";
+    } else {
+      solution += char;
     }
-    else if (str[i] !== " ") {
-      result12 += str[i];
-    } 
   }
-  return result12;
+  return solution;
 }
 
 function crazyCase2ReturnOfCrazyCase(str) {
-  let result13 = "";
+  let solution = "";
+  let counter = 1;
+
   for (let i = 0; i < str.length; i++) {
-    if (i % 2 === 0) {
-      result13 += str[i].toLowerCase();
-    } else if (i % 2 !== 0) {
-      result13 += str[i].toUpperCase();
+    let char = str[i];
+    if (char === " ") {
+      counter += 0;
+      solution += char;
+    } else if (counter % 2 > 0 || i === 0) {
+      solution += char.toLowerCase();
+      counter++;
+    } else if (counter % 2 === 0) {
+      solution += char.toUpperCase();
+      counter++;
     }
   }
-  return result13;
+  return solution;
 }
-
-
-
-
-
-
-
- /********************************************
+/********************************************
  * CODE DOWN HERE IS FOR INTERNAL USE ONLY. *
  *           PLEASE DON'T TOUCH!            *
  ********************************************/
 
-if (typeof xify === 'undefined') {
+if (typeof xify === "undefined") {
   xify = undefined;
 }
 
-if (typeof smilify === 'undefined') {
+if (typeof smilify === "undefined") {
   smilify = undefined;
 }
 
-if (typeof yellingChars === 'undefined') {
+if (typeof yellingChars === "undefined") {
   yellingChars = undefined;
 }
 
-if (typeof numberedChars === 'undefined') {
+if (typeof numberedChars === "undefined") {
   numberedChars = undefined;
 }
 
-if (typeof indexedChars === 'undefined') {
+if (typeof indexedChars === "undefined") {
   indexedChars = undefined;
 }
 
-if (typeof exclaim === 'undefined') {
+if (typeof exclaim === "undefined") {
   exclaim = undefined;
 }
 
-if (typeof repeatIt === 'undefined') {
+if (typeof repeatIt === "undefined") {
   repeatIt = undefined;
 }
 
-if (typeof truncate === 'undefined') {
+if (typeof truncate === "undefined") {
   truncate = undefined;
 }
 
-if (typeof ciEmailify === 'undefined') {
+if (typeof ciEmailify === "undefined") {
   ciEmailify = undefined;
 }
 
-if (typeof reverse === 'undefined') {
+if (typeof reverse === "undefined") {
   reverse = undefined;
 }
 
-if (typeof onlyVowels === 'undefined') {
+if (typeof onlyVowels === "undefined") {
   onlyVowels = undefined;
 }
 
-if (typeof crazyCase === 'undefined') {
+if (typeof crazyCase === "undefined") {
   crazyCase = undefined;
 }
 
-if (typeof titleCase === 'undefined') {
+if (typeof titleCase === "undefined") {
   titleCase = undefined;
 }
 
-if (typeof camelCase === 'undefined') {
+if (typeof camelCase === "undefined") {
   camelCase = undefined;
 }
 
-if (typeof crazyCase2ReturnOfCrazyCase === 'undefined') {
+if (typeof crazyCase2ReturnOfCrazyCase === "undefined") {
   crazyCase2ReturnOfCrazyCase = undefined;
 }
-
 
 module.exports = {
   xify,
@@ -243,4 +268,4 @@ module.exports = {
   titleCase,
   camelCase,
   crazyCase2ReturnOfCrazyCase,
-}
+};
